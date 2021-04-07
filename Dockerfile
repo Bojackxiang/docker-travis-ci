@@ -2,7 +2,7 @@ FROM node:alpine as builder
 
 WORKDIR '/app'
 
-COPY package.json .
+COPY package*.json ./
 RUN npm install 
 COPY . .
 # 这边之间 build 整个 react 的项目
