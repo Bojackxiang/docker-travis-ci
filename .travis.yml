@@ -4,14 +4,14 @@ language: generic
 services:
   - docker
 
-# before_install:
-#   - docker build -t alex/docker-react -f Dockerfile.dev .
+before_install:
+  - docker build -t stephengrider/docker-react -f Dockerfile.dev .
 
-# script:
-#   - docker run alex/docker-react npm run test -- --coverage
+script:
+  - docker run -e CI=true stephengrider/docker-react npm run test
 
-deploy: 
-  provider:  elasticbeanstalk 
+deploy:
+  provider: elasticbeanstalk
   region: "us-east-1"
   app: docker-react
   env: "Dockerreact-env"
@@ -20,5 +20,4 @@ deploy:
   on:
     branch: "main"
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: 
-    secure: $AWS_SECRET_KEY
+  secret_access_key: $AWS_SECRET_KEY
